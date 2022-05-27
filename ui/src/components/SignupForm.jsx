@@ -36,8 +36,8 @@ const handleSubmit = async (e) => {
         setSignedUp(true)
 
     }
-    catch (err) {
-        console.log(err)
+    catch (error) {
+        console.log(error)
         setError("Ivalid form data")
 
     }
@@ -49,7 +49,7 @@ const handleSubmit = async (e) => {
     return (
         <>
         {error && <div>{error}</div>}
-        {signedUp && <Navigate replace to="/" />}
+        {signedUp && <Navigate replace to="/home" />}
         <form onSubmit={handleSubmit}>
             <input type="text" name="username" placeholder="Username" onChange={handleChange} value={formState.username} />
             <input type="email" name="email" placeholder="Email" onChange={handleChange} value={formState.email} />

@@ -32,7 +32,7 @@ const LoginForm = () => {
             setToken(data.token)
             setLoggedIn(true)
             console.log("logged in")
-        } catch (err) {
+        } catch (error) {
             
             setError("Invalid Login")
         }
@@ -42,7 +42,7 @@ const LoginForm = () => {
 
     return (
         <>
-        {loggedIn && <Navigate replace to="/" />}
+        {loggedIn && <Navigate replace to="/home" />}
         <form onSubmit={handleSubmit}>
             <input type="text" name="username" placeholder="Username" onChange={handleChange} value={formState.username} />
             <input type="password" name="password" placeholder="Password" onChange={handleChange} value={formState.password} />
