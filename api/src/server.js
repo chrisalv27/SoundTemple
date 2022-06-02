@@ -6,6 +6,7 @@ const path = require("path")
 const morgan = require("morgan")
 
 const authRoutes = require("./routes/auth.routes")
+const spotifyToken = require("./routes/spotifyToken")
 
 
 // Initialize dotenv
@@ -24,6 +25,8 @@ app.use(cors())
 app.use(express.json())
 
 app.use("/auth", authRoutes)
+app.use("/spotify", spotifyToken)
+
 
 
 //Connect to DB
