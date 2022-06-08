@@ -3,7 +3,7 @@ import LoginForm from '../components/LoginForm'
 
 function Login() {
   return (
-    <div className="container mx-auto bg-gray-200 rounded-xl shadow border pi8 m-10 flex flex-col">
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
         <h1 className="">Welcome Back!</h1>
         <LoginForm />
     </div>

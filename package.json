@@ -15,11 +15,12 @@
     "postcss-cli": "^9.1.0",
     "react-bootstrap": "^2.4.0",
     "react-spotify-web-playback": "^0.9.2",
-    "spotify-web-api-node": "^5.0.2"
+    "react-spotify-web-playback-sdk": "^3.0.1",
+    "spotify-web-api-node": "^5.0.2",
+    "spotify-web-playback": "^1.4.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.7",
-    "postcss": "^8.4.14",
     "tailwindcss": "^3.0.24"
   }
 }

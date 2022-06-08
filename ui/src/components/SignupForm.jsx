@@ -50,7 +50,7 @@ const handleSubmit = async (e) => {
         <>
         {error && <div>{error}</div>}
         {signedUp && <Navigate replace to="/home" />}
-        <form onSubmit={handleSubmit}>
+        <form className="flex justify-center space-y-4" onSubmit={handleSubmit}>
             <input type="text" name="username" placeholder="Username" onChange={handleChange} value={formState.username} />
             <input type="email" name="email" placeholder="Email" onChange={handleChange} value={formState.email} />
             <input type="password" name="password" placeholder="Password" onChange={handleChange} value={formState.password} />

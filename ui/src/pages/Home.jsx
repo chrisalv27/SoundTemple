@@ -1,26 +1,51 @@
 import { useState, useEffect } from "reactn"
+import Player from "../components/SpotifyPlayer"
 
 
-import SpotifyPlayer from "react-spotify-web-playback"
+
 import axios from "axios"
 import { SpotifyConnect } from "../components/SpotifyConnect"
+
+
 
 
 function Home() {
   const [token, setToken] = useState([])
   const [search, setSearch] = useState("")
-  const [tracks, setTracks] = useState([]) 
-  const [playTrack, setPlayTrack] = useState([])
+  const [tracks, setTracks] = useState([])
+  const [playTrack, setPlayTrack] = useState("")
+  const [code, setCode] = useState("")
+  const [playerToken, setPlayerToken] = useState("")
 
-  const queryParams = new URLSearchParams(window.location.search)
-  const code = queryParams.get("code")
-  console.log(code)
+
 
   useEffect(() => {
+    async function play() {
+      if (code) {
+        const response = await axios.post("http://localhost:1337/spotify", { code })
+        setPlayerToken(response.data.accessToken)
+        console.log(response.data, "DATA")
+
+      }
+
+    }
+    play()
+
+  }, [code])
+
+
+
+
+
+
+  useEffect(() => {
+    const queryParams = new URLSearchParams(window.location.search)
+    setCode(queryParams.get("code"))
     axios.get("http://localhost:1337/spotify").then(
       response => {
         setToken(response.data.body.access_token);
         console.log(response.data.body.access_token)
+
       }
     )
   }, []);
@@ -30,13 +55,13 @@ function Home() {
       axios.get("https://api.spotify.com/v1/search", {
         headers: {
           Accept: 'application/json',
-          
+
           Authorization: `Bearer ${token}`,
         },
         params: {
           q: search,
           type: "track"
-          
+
         }
       }).then(response => {
         setTracks(response.data.tracks.items)
@@ -45,54 +70,60 @@ function Home() {
     } catch (error) {
       console.log(error)
     }
+  }
 
-
-
+  const handleTrack = (track) => {
+    setPlayTrack(track.uri)
   }
 
 
-   
+
+
 
 
   return (
-    <>
-         <h1>Spotify</h1>
-         <SpotifyConnect />
-        <form onSubmit={searchSubmit}>
+    <div className="bg-state-300">
+
+      <h1>Spotify</h1>
+      <SpotifyConnect />
+      <form onSubmit={searchSubmit}>
         <input type="text" placeholder="search for music" value={search} onChange={e => setSearch(e.target.value)}></input>
         <button>Search</button>
-        </form>
-        <div className="" style={{ overflowY: 'auto' }}>
-          <ul>
+      </form>
+      <div className="grid">
+        <ul>
           {tracks.map(track =>
-          <article>
-            <button onClick={track => setPlayTrack(track.uri)}>Click</button>
-            {track.artist}
-            {track.name}
-            {track.uri}
-            <img src={track.album.images[1].url} style={{height: "64px", width: "64px"}}></img>
-          
-          </article>)} 
-          
-
-          </ul>
-          
-        </div>
+            <article>
+              <button onClick={() => handleTrack(track)}>Click</button>
+              {track.artist}
+              {track.name}
+              {track.uri}
+              <img src={track.album.images[1].url} style={{ height: "64px", width: "64px" }}></img>
+            </article>)}
+        </ul>
         <div>
-         {code && <SpotifyPlayer accessToken={code} uris={playTrack}  />}
+          {playTrack}
+          {playerToken && playTrack && <Player accessToken={playerToken} trackUri={playTrack} />}
         </div>
-        
+      </div>
+    </div>
 
-       
-
-    </>
   )
 }
 
 export default Home
-  
-    
-   
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
