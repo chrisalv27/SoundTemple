@@ -50,13 +50,13 @@ const handleSubmit = async (e) => {
         <>
         {error && <div>{error}</div>}
         {signedUp && <Navigate replace to="/home" />}
-        <form className="flex justify-center space-y-4" onSubmit={handleSubmit}>
-            <input type="text" name="username" placeholder="Username" onChange={handleChange} value={formState.username} />
+        <form className="flex flex-col jus" onSubmit={handleSubmit}>
+            <input className="" type="text" name="username" placeholder="Username" onChange={handleChange} value={formState.username} />
             <input type="email" name="email" placeholder="Email" onChange={handleChange} value={formState.email} />
             <input type="password" name="password" placeholder="Password" onChange={handleChange} value={formState.password} />
             <input type="password" name="confirmPassword" placeholder="Confirm Password" onChange={handleChange} value={formState.confirmPassword} />
-            <button>Sign Up</button>
-            <Link to="/login">or login</Link>
+            <button className="bg-green-800 hover:bg-green-500 text-white font-bold py-2 px-4 border border-black rounded mt-3">Sign Up 😎</button>
+            <Link className="bg-green-800 hover:bg-green-500 text-white font-bold py-2 px-4 border border-black rounded mt-3" to="/login">or login</Link>
         </form>
         </>
     )

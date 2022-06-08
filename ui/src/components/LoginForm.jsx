@@ -43,11 +43,11 @@ const LoginForm = () => {
     return (
         <>
         {loggedIn && <Navigate replace to="/home" />}
-        <form className="flex flex-col" onSubmit={handleSubmit}>
-            <input type="text" name="username" placeholder="Username" onChange={handleChange} value={formState.username} />
+        <form className="flex flex-col mt-3" onSubmit={handleSubmit}>
+            <input className="mt-3" type="text" name="username" placeholder="Username" onChange={handleChange} value={formState.username} />
             <input type="password" name="password" placeholder="Password" onChange={handleChange} value={formState.password} />
-            <button>Login</button>
-            <Link to="/signup">or signup</Link>
+            <button className="bg-green-800 hover:bg-green-500 text-white font-bold py-2 px-4 border border-black rounded mt-3">Login</button>
+            <Link className="bg-green-800 hover:bg-green-500 text-white font-bold py-2 px-4 border border-black rounded mt-3" to="/signup">or signup</Link>
 
         </form>
         </>

@@ -82,22 +82,23 @@ function Home() {
 
 
   return (
-    <div className="bg-state-300">
+    <>
+      <h1 className="flex flex-col text-3xl p-10 bg-green-800 items-center">Spotify</h1>
+    <div className="flex flex-col h-screen bg-black items-center">
 
-      <h1>Spotify</h1>
       <SpotifyConnect />
       <form onSubmit={searchSubmit}>
         <input type="text" placeholder="search for music" value={search} onChange={e => setSearch(e.target.value)}></input>
-        <button>Search</button>
+        <button className="bg-green-800 hover:bg-green-500 text-white font-bold py-2 px-4 border border-black rounded ml-3">Search</button>
       </form>
       <div className="grid">
         <ul>
           {tracks.map(track =>
             <article>
-              <button onClick={() => handleTrack(track)}>Click</button>
-              {track.artist}
-              {track.name}
-              {track.uri}
+              <button className="bg-green-800 hover:bg-green-500 text-white font-bold py-2 px-4 border border-black rounded ml-3" onClick={() => handleTrack(track)}>Play</button>
+              <div>{track.artist}</div>
+              <div>{track.name}</div>
+              
               <img src={track.album.images[1].url} style={{ height: "64px", width: "64px" }}></img>
             </article>)}
         </ul>
@@ -107,6 +108,7 @@ function Home() {
         </div>
       </div>
     </div>
+    </>
 
   )
 }

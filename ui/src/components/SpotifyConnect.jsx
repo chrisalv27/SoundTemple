@@ -7,6 +7,6 @@ const AUTH_URL =
 
 export const SpotifyConnect = () => {
   return (
-    <a href={AUTH_URL}>Connect to Spotify</a>
+    <a className="bg-green-800 hover:bg-green-500 text-white font-bold py-2 px-4 border border-black rounded mt-3 mb-3" href={AUTH_URL}>Connect to Spotify</a>
   )
 }
